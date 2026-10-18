@@ -1,0 +1,18 @@
+<section id="preview" aria-live="polite">
+<div class="preview-heading"><div><p class="eyebrow">THE FINISHING TOUCH</p><h2>Your label sheets</h2></div><span class="count">{{count}} guest{{ '' if count == 1 else 's' }}</span></div>
+{% if error %}<div class="notice error" role="alert"><strong>Update needs attention</strong><p>{{error}}</p><p>The last saved version is shown. Correct your inputs and save again.</p></div>{% endif %}
+{% for notice in notices %}<p class="notice">{{notice}}</p>{% endfor %}
+<div class="sheets">
+{% for page in pages %}
+<div class="sheet-heading"><span>SHEET {{loop.index}} / {{pages|length}}</span><span>{{'%g'|format(s.width)}} × {{'%g'|format(s.height)}} mm</span></div>
+<svg class="sheet" viewBox="0 0 {{s.width}} {{s.height}}" role="img" aria-label="Label sheet {{loop.index}} preview">
+<rect width="{{s.width}}" height="{{s.height}}" fill="white"/>
+{% for slot in range(12) %}{% set xy=s.position(slot) %}<rect x="{{xy[0]}}" y="{{xy[1]}}" width="64" height="32" rx="1" class="label-outline"/><text x="{{xy[0]+2}}" y="{{xy[1]+4}}" class="slot-number">{{slot+1}}</text>{% endfor %}
+{% for label in page %}{% for line in label.lines %}<text x="{{line.x}}" y="{{line.baseline}}" text-anchor="middle" font-family="{{ line.font }}" font-size="{{line.size / (72/25.4)}}">{{line.text}}</text>{% endfor %}{% endfor %}
+</svg>
+{% endfor %}
+</div>
+{% if count == 0 and not error %}<p class="empty">Your guests belong here.<br><span>Paste a few names and update the preview.</span></p>{% endif %}
+<div class="downloads">{% if ready %}<a class="primary" href="/labels.pdf">Download guest labels <span aria-hidden="true">↓</span></a>{% else %}<span class="primary disabled" aria-disabled="true">Download guest labels ↓</span>{% endif %}<a class="secondary" href="/calibration.pdf">Download alignment test</a></div>
+<p class="hint">Outlines and position numbers appear in the preview and alignment test only. Guest PDFs contain text only. Downloads use your last saved settings.</p>
+</section>

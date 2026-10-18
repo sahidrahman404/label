@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guest labels · TJ 103</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 rx=%278%27 fill=%27%23263d32%27/%3E%3Ctext x=%2720%27 y=%2728%27 text-anchor=%27middle%27 font-size=%2726%27 fill=%27%23f6f4ed%27%3EG%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/style.css">
+<script type="module" src="/static/datastar.js"></script>
+</head>
+<body data-signals='{{ signals }}'>
+<header><a class="brand" href="/">G<span> / </span>L</a><span>THE WEDDING DESK</span><span class="local">● &nbsp; Local workspace</span></header>
+<main>
+<section class="intro"><p class="eyebrow">A PERSONAL INVITATION</p><h1>Every guest, <em>by name.</em></h1><p>A little care for the people who matter. Prepare your labels, check the alignment, and print.</p></section>
+<div class="workspace">
+<form class="editor" data-on:submit="evt.preventDefault(); @post('/settings')" data-indicator="_saving">
+<div class="section-heading"><span class="number">01</span><h2>Your guest list</h2><span class="tag">TJ 103 · 12 / sheet</span></div>
+<label for="names">Guest or household names <small>One label per line</small></label>
+<textarea id="names" data-bind="names" rows="9" placeholder="Bapak Ahmad &amp; Keluarga&#10;Ibu Siti Rahma&#10;Rizky &amp; Putri"></textarea>
+<p class="hint">Names stay in the order you enter them. Blank lines are ignored.</p>
+<label for="footer">Location / closing</label><input id="footer" data-bind="footer">
+<div class="section-heading second"><span class="number">02</span><h2>Paper & alignment</h2></div>
+<p class="hint">3 columns × 4 rows · Labels 64 × 32 mm. Measure the <strong>backing sheet</strong>, including its edges. Initial values are examples.</p>
+<div class="two-col">
+{% for key, label in [('width','Sheet width'),('height','Sheet height'),('left','Left margin'),('top','Top margin'),('gap_x','Horizontal gap'),('gap_y','Vertical gap'),('offset_x','Move right (+) / left (−)'),('offset_y','Move down (+) / up (−)')] %}
+<div><label for="{{ key }}">{{ label }} <small>mm</small></label><input type="number" step="0.1" id="{{ key }}" data-bind="{{ key }}" required></div>
+{% endfor %}
+</div>
+<label for="start">First label position</label><select id="start" data-bind="start">{% for n in range(1,13) %}<option value="{{n}}">{{n}}{% if n == 1 %} · Start a new sheet{% endif %}</option>{% endfor %}</select>
+<label class="check"><input type="checkbox" data-bind="measured"> I have checked these measurements against my sheet.</label>
+<button class="primary" type="submit" data-attr:disabled="$_saving"><span data-show="!$_saving">Save & update preview <span aria-hidden="true">↗</span></span><span data-show="$_saving" style="display:none">Saving…</span></button>
+<p class="hint save-note">Updates are saved locally when you press this button.</p>
+</form>
+<aside>{{ preview | safe }}</aside>
+</div>
+<section class="print-guide"><div><p class="eyebrow">BEFORE THE FIRST SHEET</p><h2>A small test. A perfect fit.</h2></div><ol><li><strong>Measure & save</strong><p>Enter the sheet size, margins and gaps. Confirm measurements, then save.</p></li><li><strong>Check on plain paper</strong><p>Download the alignment sheet. Print on paper cut to the same size and compare against your labels under light. Its reference line must measure 50 mm.</p></li><li><strong>Print at actual size</strong><p>In the Epson Windows driver, create a User-Defined paper size matching your sheet. In your PDF viewer choose Actual size / 100%, single-sided, one page per sheet. Disable Fit, scaling and borderless expansion.</p></li><li><strong>Try one label sheet</strong><p>Load one sheet at a time, printable side up in the L300 rear feeder. Check alignment and ink drying before the full batch. Use stock suitable for inkjet printing.</p></li></ol><p class="hint">Uniform shift? Adjust Move right / down. Increasing drift across rows or columns? Recheck gaps and print scaling. Text should stay at least 3 mm from each sheet edge.</p></section>
+</main><footer>Made for a thoughtful first impression. <span>Guest labels / TJ 103</span></footer>
+</body></html>

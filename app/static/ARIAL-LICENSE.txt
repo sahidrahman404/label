@@ -1,0 +1,9 @@
+Microsoft Arial, from Microsoft's TrueType core fonts for the Web package.
+Source: https://downloads.sourceforge.net/corefonts/arial32.exe
+Project: https://corefonts.sourceforge.net/
+Copyright Microsoft Corporation. All rights reserved.
+
+The complete original unmodified distribution is retained at vendor/arial32.exe.
+Arial.ttf was extracted from that distribution for use by this local app.
+License: TrueType core fonts for the Web EULA (not an open-source font license).
+See https://corefonts.sourceforge.net/eula.htm and vendor/arial-eula.html.

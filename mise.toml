@@ -1,0 +1,14 @@
+[tools]
+python = "3.12.12"
+uv = "0.10.7"
+
+[tasks.setup]
+description = "Install locked app and test dependencies"
+run = "uv sync --frozen"
+
+[tasks.dev]
+description = "Open http://127.0.0.1:8000"
+run = "uv run --frozen uvicorn app.main:app --host 127.0.0.1 --port 8000"
+
+[tasks.test]
+run = "uv run --frozen pytest"
