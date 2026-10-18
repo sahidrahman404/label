@@ -64,3 +64,4 @@ All geometry is in millimetres from the backing sheet’s top-left; shared layou
 Third-party assets: Datastar 1.0.4 (MIT; see `app/static/DATASTAR-LICENSE.txt`), DejaVu Sans for the interface/calibration (see `app/static/FONT-LICENSE.txt`), EB Garamond (see `app/static/EBGaramond-OFL.txt`), and Microsoft Arial (see `app/static/ARIAL-LICENSE.txt`; complete original distribution retained in `vendor/arial32.exe`).
 
 References: [Datastar](https://data-star.dev/), [Epson L300 manual](https://files.support.epson.com/docid/cpd4/cpd40789.pdf).
+# label
